@@ -32,17 +32,22 @@ async function getFullURL(shortURL) {
 async function getPicUrl(dynamic_id) {
   const url = `https://api.bilibili.com/x/polymer/web-dynamic/v1/detail?id=${dynamic_id}`
   const headers = {
-    accept: 'application/json, text/plain, */*',
-    'accept-encoding': 'gzip, deflate',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'cache-control': 'no-cache',
-    cookie: 'l=v;',
-    origin: 'https://space.bilibili.com',
-    pragma: 'no-cache',
-    referer: `https://space.bilibili.com/${dynamic_id}/dynamic`,
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-site',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'zh-CN,zh;q=0.9',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive',
+    'Host': 'api.bilibili.com',
+    'Pragma': 'no-cache',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'none',
+    'Sec-Fetch-User': '?1',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
+    'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
   }
   const response = await axios.get(url, { headers })
   const responseData = response.data
