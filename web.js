@@ -14,7 +14,7 @@ app.all("/getBiliDynamicPicUrl", async function (req, res) {
   }
   const result = await doGetUrl(
     {
-      shareUrl: "https://t.bilibili.com/816019970913730628",
+      shareUrl: shareUrl,
     },
     null
   );
