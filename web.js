@@ -15,13 +15,19 @@ app.all("/getBiliDynamicPicUrl", async function (req, res) {
     }));
     return;
   }
-  const result = await doGetUrl(
-    {
-      shareUrl: shareUrl,
-    },
-    null
-  );
-  res.send(JSON.stringify(result));
+  try {
+    const result = await doGetUrl(
+      {
+        shareUrl: shareUrl,
+      },
+      null
+    );
+    res.send(JSON.stringify(result));
+  } catch (e) {
+    res.send(JSON.stringify({
+      error: e.message,
+    }));
+  }
 });
 
 app.listen(7776);
