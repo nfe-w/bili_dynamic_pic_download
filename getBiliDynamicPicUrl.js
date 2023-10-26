@@ -25,6 +25,7 @@ async function getFullURL(shortURL) {
     const response = await axios.head(shortURL)
     return response.request.res.responseUrl
   } catch (error) {
+    console.log(error.message)
     throw new Error('解析全url错误')
   }
 }
@@ -45,9 +46,11 @@ async function getPicUrl(dynamic_id) {
     'Sec-Fetch-User': '?1',
     'Upgrade-Insecure-Requests': '1',
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36',
-    'sec-ch-ua': '"Not.A/Brand";v="8", "Chromium";v="114", "Google Chrome";v="114"',
+    'Sec-ch-ua': '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
     'sec-ch-ua-mobile': '?0',
     'sec-ch-ua-platform': '"macOS"',
+    'Referer': 'https://www.bilibili.com/',
+    'Referrer-Policy': 'strict-origin-when-cross-origin'
   }
   const response = await axios.get(url, { headers })
   const responseData = response.data
