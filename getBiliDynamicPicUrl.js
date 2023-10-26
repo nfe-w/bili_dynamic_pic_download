@@ -52,8 +52,14 @@ async function getPicUrl(dynamic_id) {
     'Referer': 'https://www.bilibili.com/',
     'Referrer-Policy': 'strict-origin-when-cross-origin'
   }
+  console.log(`url->${url}`)
   const response = await axios.get(url, { headers })
   const responseData = response.data
+  const responseDateJson = JSON.stringify(responseData)
+  console.log(`response->${responseDateJson}`)
+  if (responseData.code !== 0) {
+    throw new Error(`b站接口返回异常->${responseDateJson}`)
+  }
   let picInfoArray = []
   try {
     picInfoArray = responseData.data.item.modules.module_dynamic.major.draw.items
