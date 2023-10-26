@@ -8,6 +8,16 @@
 
 ## 使用教程
 
+### Docker
+
+```sh
+# 构建镜像
+docker build -t nfew/bili_dynamic_pic_download:latest .
+
+# 启动容器
+docker run -d -p 7776:7776 --name bili_dynamic_pic_download nfew/bili_dynamic_pic_download:latest
+```
+
 #### 1. 部署云函数
 
 (1) 一键复制代码
