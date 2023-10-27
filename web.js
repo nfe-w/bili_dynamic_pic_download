@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.all("/getBiliDynamicPicUrl", async function (req, res) {
   res.set("Content-Type", "application/json");
   const shareUrl = req.query.shareUrl || req.body.shareUrl;
+  const biliCookie = req.body.biliCookie;
   if (!shareUrl) {
     res.send(JSON.stringify({
       error: "缺少shareUrl参数",
@@ -19,6 +20,7 @@ app.all("/getBiliDynamicPicUrl", async function (req, res) {
     const result = await doGetUrl(
       {
         shareUrl: shareUrl,
+        biliCookie: biliCookie,
       },
       null
     );

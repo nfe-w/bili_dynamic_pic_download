@@ -2,6 +2,7 @@ const axios = require('axios')
 
 module.exports = async function (params, context) {
   const shareUrl = params['shareUrl']
+  const biliCookie = params['biliCookie']
   if (!shareUrl) {
     return {
       error: '缺少shareUrl参数',
@@ -14,7 +15,7 @@ module.exports = async function (params, context) {
   const dynamicId = fullUrl.split('?')[0].split('/').pop()
   console.log(`dynamicId->${dynamicId}`)
 
-  const picUrlArray = await getPicUrl(dynamicId)
+  const picUrlArray = await getPicUrl(dynamicId, biliCookie)
   return {
     picUrlArray,
   }
@@ -30,7 +31,7 @@ async function getFullURL(shortURL) {
   }
 }
 
-async function getPicUrl(dynamic_id) {
+async function getPicUrl(dynamic_id, biliCookie) {
   const url = `https://api.bilibili.com/x/polymer/web-dynamic/v1/detail?id=${dynamic_id}`
   const headers = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -51,6 +52,9 @@ async function getPicUrl(dynamic_id) {
     'sec-ch-ua-platform': '"macOS"',
     'Referer': 'https://www.bilibili.com/',
     'Referrer-Policy': 'strict-origin-when-cross-origin'
+  }
+  if (biliCookie) {
+    headers['Cookie'] = biliCookie
   }
   console.log(`url->${url}`)
   const response = await axios.get(url, { headers })
